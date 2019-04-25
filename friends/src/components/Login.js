@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { login } from "../actions"
 // import Loader from "react-loader-spinner";
 
 class Login extends React.Component {
@@ -23,7 +24,6 @@ class Login extends React.Component {
         e.preventDefault();
         this.props
             .login(this.state.credentials)
-            // /protected    ???
             .then(() => this.props.history.push("/protected"))
     };
 
