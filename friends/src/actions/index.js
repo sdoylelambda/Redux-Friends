@@ -19,7 +19,7 @@ export const FETCH_FRIENDS_FAILURE= "FETCH_FRIENDS_FAILURE";
 export const getFriends = () => dispatch => {
     dispatch({ type: FETCH_FRIENDS_START });
     axios
-        .get("http://localhost/5000")
+        .get("http://localhost/5000/api/friends")
         .then(res => dispatch({type: FETCH_FRIENDS_SUCCESS, payload: res.data}))
         .catch(err => dispatch({type: FETCH_FRIENDS_FAILURE, payload: err}))
 };

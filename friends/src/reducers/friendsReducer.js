@@ -18,12 +18,13 @@ export const friendsReducer = (state = initalState, action) => {
         return {
            ...state,
             error: "",
-            isLoading: false
+            isLoading: false,
+            friends: action.payload
         } 
         case FETCH_FRIENDS_FAILURE:
         return {
            ...state,
-            error: "",
+            error: action.payload,
             isLoading: false
         } 
         default: 

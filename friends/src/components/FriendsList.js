@@ -1,19 +1,40 @@
 import React from 'react';
-import Friend from './Friends'
+import Friend from './Friends';
+// import moment from 'moment';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
-const FriendsList = props => {
-    return (
-        <ul>
-            {props.friends && props.friends.map(friend => {
-                return (
-                    <Friend key={friend.name} friend={friend} />
-                );
-            })}
-        </ul>
-    );
-};
+import { getFriends } from "../actions";
 
-export default FriendsList;
+class FriendsList extends React.Component {
+    componentDidMount() {
+        this.props.getFriends();
+    }
+
+    render() {
+        return (
+            <ul>
+                {this.props.friends && this.props.friends.map(friend => {
+                    return (
+                        <Friend key={friend.name} friend={friend} />
+                    );
+                })}
+            </ul>
+        );
+    };
+}
+
+const mapStateToProps = ({ friends, fetchingData}) => ({
+    friends,
+    fetchingData
+});
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+        { getFriends }
+) (FriendsList)
+);
 
 
 
